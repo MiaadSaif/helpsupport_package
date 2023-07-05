@@ -1,0 +1,21 @@
+{
+    "name": "miaad/helpsupport",
+    "description": "my package",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Miaad\\Helpsupport\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "MiaadSaif",
+            "email": "118962191+MiaadSaif@users.noreply.github.com"
+        }
+    ],
+    "files": [
+        "src/config/helpsupport.php"
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
