@@ -2,15 +2,20 @@
 
 namespace Miaad\Helpsupport\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller as ControllersController;
+use App\Http\Middleware\ChangePasswordMiddleware;
 
-class HelpsupportController extends Controller
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Miaad\Helpsupport\Http\Controllers\Controller;
+
+class HelpsupportController extends ControllersController
 {
-    /* public function __construct()
+    public function __construct()
     {
-        $this->middleware(['auth:coordinator', 'change_password']);
-    } */
+        $this->middleware('auth');
+    }
     public function indexx()
     {
         return view('helpsupport::index');
@@ -79,7 +84,7 @@ class HelpsupportController extends Controller
             curl_close($ch);
             //dd(json_decode($response));
             $complains = json_decode($response);
-             dd($complains);
+            dd($complains);
             return redirect("help/ViewTicket/MyTickets");
             //   return view('maf.help_support.ViewTicket', compact("complains"));
         } else {
@@ -137,7 +142,7 @@ class HelpsupportController extends Controller
                 echo 'Error: ' . curl_error($ch);
             }
             //dd($response);
-           // dd(json_decode($response));
+            // dd(json_decode($response));
             $complain = json_decode($response);
 
             return view('helpsupport::ViewResponse', compact("complain"));
@@ -165,11 +170,11 @@ class HelpsupportController extends Controller
             echo 'Error: ' . curl_error($ch);
         }
 
-       //dd(json_decode($response));
+        //dd(json_decode($response));
         $complain = json_decode($response);
         // dd($complains, request()['complain_id']);
-       // dd($complain);
-       curl_close($ch);
+        // dd($complain);
+        curl_close($ch);
         return view('helpsupport::ViewResponse', compact("complain"));
         // return view('maf.help_support.ViewResponse');
     }
@@ -244,7 +249,7 @@ class HelpsupportController extends Controller
             echo 'Error: ' . curl_error($ch);
         }
 
-       // dd(json_decode($response));
+        // dd(json_decode($response));
         $complain = json_decode($response);
 
         //dd($complain);
@@ -254,6 +259,5 @@ class HelpsupportController extends Controller
         return view('maf.help_support.ViewResponse', compact("complain"));
 
         curl_close($ch);
-
     }
 }

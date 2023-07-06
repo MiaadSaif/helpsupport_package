@@ -2,8 +2,9 @@
 
 namespace Miaad\Helpsupport;
 
-use Illuminate\Support\Facades\Route;
+use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\ServiceProvider;
+use Miaad\Helpsupport\Http\Middleware\ChangePasswordMiddleware;
 
 class HelpsupportServiceProvider extends ServiceProvider
 {
@@ -22,5 +23,6 @@ class HelpsupportServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
         $this->loadViewsFrom(__DIR__ . '/views', 'helpsupport');
+
     }
 }
