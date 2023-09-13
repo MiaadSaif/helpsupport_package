@@ -17,6 +17,9 @@ class HelpsupportServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../assets' => public_path('miaad/helpsupport'),
         ], 'public');
+
+        $this->mergeConfigFrom(__DIR__.'/config/helpsupport.php', 'helpsupport');
+
     }
 
     public function boot()

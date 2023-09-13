@@ -6,6 +6,17 @@ namespace Composer\Autoload;
 
 class ComposerStaticInite5f4c0077b68339dbc44775968d4be63
 {
+    public static $files = array (
+        '28601bff2957c570a61d220cb1f79d93' => __DIR__ . '/../..' . '/miaad/helpsupport/assets/css/*.css',
+        '069470c748db79f559c01e1f53dfdf91' => __DIR__ . '/../..' . '/miaad/helpsupport/assets/css/*.css.map',
+        '89f359689209703bc38504f21155be53' => __DIR__ . '/../..' . '/miaad/helpsupport/assets/css/*.scss',
+        '1a1f55704342dbea5408a33c65126ab2' => __DIR__ . '/../..' . '/miaad/helpsupport/assets/colors/*.css',
+        '0bcef891491cc6abb9ce471d39a3a37c' => __DIR__ . '/../..' . '/miaad/helpsupport/assets/colors/*.css.map',
+        '4c5a36cf90612e437705f2c3d5fce169' => __DIR__ . '/../..' . '/miaad/helpsupport/assets/colors/*.scss',
+        '34a6224b84e2269722c26df9d82f34f8' => __DIR__ . '/../..' . '/miaad/helpsupport/assets/js/*.js',
+        '198984f0498290756073450f8dd8f756' => __DIR__ . '/../..' . '/miaad/helpsupport/assets/images/*.{jpg,jpeg,png,gif,svg}',
+    );
+
     public static $prefixLengthsPsr4 = array (
         'M' => 
         array (

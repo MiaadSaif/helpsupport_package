@@ -3,7 +3,6 @@
 namespace Miaad\Helpsupport\Http\Controllers;
 
 use App\Http\Controllers\Controller as ControllersController;
-use App\Http\Middleware\ChangePasswordMiddleware;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -16,10 +15,7 @@ class HelpsupportController extends ControllersController
     {
         $this->middleware('auth');
     }
-    public function indexx()
-    {
-        return view('helpsupport::index');
-    }
+
     public function index()
     {
 
@@ -73,8 +69,8 @@ class HelpsupportController extends ControllersController
             $complain_id = json_decode($response)->complains->id;
 
             $ch = curl_init();
-            $url = config("helpsupport.url");
-            curl_setopt($ch, CURLOPT_URL, "$url/api/list_complains/$client_id");
+            $url = config("http://192.168.100.192:1234");
+            curl_setopt($ch, CURLOPT_URL, "http://192.168.100.192:1234/api/list_complains/1");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
             $response = curl_exec($ch);
@@ -84,8 +80,10 @@ class HelpsupportController extends ControllersController
             curl_close($ch);
             //dd(json_decode($response));
             $complains = json_decode($response);
-            dd($complains);
-            return redirect("help/ViewTicket/MyTickets");
+
+            return redirect("ViewTicket/MyTickets");
+            //dd($complains);
+
             //   return view('maf.help_support.ViewTicket', compact("complains"));
         } else {
             return back()->with('error', 'An error occurred while submitting your complaint. Please try again later.');
@@ -216,6 +214,7 @@ class HelpsupportController extends ControllersController
     public function MyTickets()
     {
         $client_id = config("helpsupport.client_id");
+        //dd( $client_id);
         $ch = curl_init();
         $url = config("helpsupport.base_url");
         curl_setopt($ch, CURLOPT_URL, "$url/api/list_complains/$client_id");
