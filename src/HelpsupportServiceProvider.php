@@ -2,9 +2,7 @@
 
 namespace Miaad\Helpsupport;
 
-use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\ServiceProvider;
-use Miaad\Helpsupport\Http\Middleware\ChangePasswordMiddleware;
 
 class HelpsupportServiceProvider extends ServiceProvider
 {
@@ -14,18 +12,20 @@ class HelpsupportServiceProvider extends ServiceProvider
             return new Helpsupport();
         });
 
-        $this->publishes([
-            __DIR__ . '/../assets' => public_path('miaad/helpsupport'),
-        ], 'public');
-
-        $this->mergeConfigFrom(__DIR__.'/config/helpsupport.php', 'helpsupport');
-
+        $this->mergeConfigFrom(__DIR__ . '/config/helpsupport.php', 'helpsupport');
     }
 
     public function boot()
     {
-        $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
-        $this->loadViewsFrom(__DIR__ . '/views', 'helpsupport');
+        // Publish your assets
+        $this->publishes([
+            __DIR__ . '/public' => public_path('vendor/helpsupport'),
+        ], 'public');
 
+        // Load your package's routes
+        $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
+
+        // Load your package's views
+        $this->loadViewsFrom(__DIR__ . '/views', 'helpsupport');
     }
 }
