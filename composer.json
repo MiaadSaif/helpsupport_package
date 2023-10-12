@@ -5,19 +5,7 @@
     "autoload": {
         "psr-4": {
             "Miaad\\Helpsupport\\": "src/"
-        },
-        "files": [
-            "miaad/helpsupport/assets/css/*.css",
-            "miaad/helpsupport/assets/css/*.css.map",
-            "miaad/helpsupport/assets/css/*.scss"  ,
-            "miaad/helpsupport/assets/colors/*.css",
-            "miaad/helpsupport/assets/colors/*.css.map" ,
-            "miaad/helpsupport/assets/colors/*.scss",
-            "miaad/helpsupport/assets/js/*.js" ,
-            "miaad/helpsupport/assets/images/*.{jpg,jpeg,png,gif,svg}"
-
-
-        ]
+        }
     },
     "authors": [
         {
