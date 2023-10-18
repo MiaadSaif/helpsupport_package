@@ -2,9 +2,26 @@
     <title>{{ __('Help Support') }}</title>
     {{ Config::get('helpsupport.base_url') }}
     <link rel="stylesheet" type="text/css" href="{{ asset('Helpsupport/src/assets/css/styles.css') }}">
-    @endsection
+@endsection
+
+<head>
+    <link id="style" href="{{ asset('plugins/css/bootstrap.min.css') }}" rel="stylesheet" />
+
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="{{ asset('vendor/helpsupport/css/style.css') }}">
+    <link href="{{ asset('vendor/helpsupport/css/dark-style.css') }}" rel="stylesheet" />
+    <link href="{{ asset('vendor/helpsupport/css/transparent-style.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/helpsupport/css/skin-modes.css') }}" rel="stylesheet" />
+
+    <!-- FONT-ICONS CSS -->
+    <link href="{{ asset('vendor/helpsupport/css/icons.css') }}" rel="stylesheet" />
+
+    <!-- COLOR SKIN CSS -->
+    <link id="theme" rel="stylesheet" type="text/css" media="all" href="{{ asset('vendor/helpsupport/colors/color1.css') }}" />
+</head>
 
 <!-- Page-Header -->
+<body>
 <div class="container">
     <div class='page-header'>
         <div>
@@ -92,6 +109,26 @@
     </div>
 </div>
 
-
+</body>
 @section('scripts')
+<script src="{{ asset('vendor/helpsupport/js/jquery.min.js') }}"></script>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="{{ asset('vendor/helpsupport/plugins/bootstrap/js/popper.min.js') }}"></script>
+    <script src="{{ asset('vendor/helpsupport/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+
+    <!-- SHOW PASSWORD JS -->
+    <script src="{{ asset('vendor/helpsupport/js/show-password.min.js') }}"></script>
+
+    <!-- GENERATE OTP JS -->
+    <script src="{{ asset('vendor/helpsupport/js/generate-otp.js') }}"></script>
+
+    <!-- Perfect SCROLLBAR JS-->
+    <script src="{{ asset('vendor/helpsupport/plugins/p-scroll/perfect-scrollbar.js') }}"></script>
+
+    <!-- Color Theme js -->
+    <script src="{{ asset('vendor/helpsupport/js/themeColors.js') }}"></script>
+
+    <!-- CUSTOM JS -->
+    <script src="{{ asset('vendor/helpsupport/js/custom.js') }}"></script>
 @endsection

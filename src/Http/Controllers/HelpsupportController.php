@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller as ControllersController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Miaad\Helpsupport\Http\Controllers\Controller;
 
@@ -13,7 +14,9 @@ class HelpsupportController extends ControllersController
 {
     public function __construct()
     {
-        $this->middleware('auth');
+      $this->middleware('auth:coordinator');
+        //$this->middleware('auth');
+
     }
 
     public function index()
@@ -214,20 +217,23 @@ class HelpsupportController extends ControllersController
     public function MyTickets()
     {
         $client_id = config("helpsupport.client_id");
-        //dd( $client_id);
+
+       // dd( $client_id);
         $ch = curl_init();
         $url = config("helpsupport.base_url");
+
         curl_setopt($ch, CURLOPT_URL, "$url/api/list_complains/$client_id");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         $response = curl_exec($ch);
+       // Log::info($response);
         if (curl_errno($ch)) {
             echo 'Error: ' . curl_error($ch);
         }
         curl_close($ch);
         //dd(json_decode($response));
         $complains = json_decode($response);
-        dd($complains);
+        //dd($complains);
         return view('helpsupport::ViewTicket', compact("complains"));
     }
     public function TicketTracking(Request $request)
