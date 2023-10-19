@@ -14,8 +14,8 @@ class HelpsupportController extends ControllersController
 {
     public function __construct()
     {
-         $this->middleware('auth:coordinator');
-       // $this->middleware('auth');
+       //  $this->middleware('auth:coordinator');
+        $this->middleware('auth');
     }
 
     public function index()
@@ -44,6 +44,7 @@ class HelpsupportController extends ControllersController
      */
     public function store(Request $request)
     {
+
         // Initialize cURL
         $url = config("helpsupport.base_url");
         $ch = curl_init("$url/api/submit_new_complain");
@@ -104,6 +105,8 @@ class HelpsupportController extends ControllersController
      */
     public function submit_response(Request $request)
     {
+
+
         // Initialize cURL
         $url = config("helpsupport.base_url");
         $ch = curl_init("$url/api/submit_response");
@@ -158,6 +161,8 @@ class HelpsupportController extends ControllersController
     }
     public function show()
     {
+
+
         $ch = curl_init();
         $client_id = config("helpsupport.client_id");
         $url = config("helpsupport.base_url");
@@ -216,6 +221,8 @@ class HelpsupportController extends ControllersController
     }
     public function MyTickets()
     {
+
+
         $client_id = config("helpsupport.client_id");
 
         // dd( $client_id);
@@ -238,6 +245,7 @@ class HelpsupportController extends ControllersController
     }
     public function TicketTracking(Request $request)
     {
+
         log::info($request);
         $complain_id = $request->input('complain_id');
 

@@ -47,7 +47,7 @@
                                     <div class="card-header">
                                     </div>
                                     <div class="card-body">
-                                        <form id="TicketForm" name="TicketForm" method="post" class="form-horizontal" action="{{ route('storeNewTicket') }}" enctype="multipart/form-data">
+                                        <form id="TiketTrackingForm" name="TiketTracking" method="post" class="form-horizontal" action="{{ route('TicketTrackingPost') }}" enctype="multipart/form-data">
                                             @csrf
 
                                             <input type="hidden" name="client_id" id="client_id" value="{{ Config::get('helpsupport.client_id') }}">

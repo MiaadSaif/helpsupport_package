@@ -7,7 +7,7 @@
     <!-- TITLE -->
     <title>{{ __('Help Support') }}</title>
     <!-- BOOTSTRAP CSS -->
-    <link id="style" href="{{ asset('plugins/css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link id="style" href="{{ asset('vendor/helpsupport/plugins/css/bootstrap.min.css') }}" rel="stylesheet" />
     <!-- STYLE CSS -->
     <link rel="stylesheet" href="{{ asset('vendor/helpsupport/css/style.css') }}">
     <link href="{{ asset('vendor/helpsupport/css/dark-style.css') }}" rel="stylesheet" />
@@ -28,7 +28,7 @@
                 <!-- CONTAINER OPEN -->
                 <div class="col col-login mx-auto mt-7">
                     <div class="text-center">
-                        <a href="index.html"><img src="{{ asset('vendor/helpsupport/images/brand/logo-white.png') }}" class="header-brand-img" alt=""></a>
+                        <a href="index.html"><img src="{{ asset('vendor/helpsupport/images/brand/moeen3.png') }}" class="header-brand-img" alt=""></a>
                     </div>
                 </div>
 
@@ -60,9 +60,8 @@
                                         </div>
 
                                         <div class="tab-pane" id="tab6">
-                                            <form id="TiketTracking" name="TiketTracking" class="form-horizontal" action="{{ route('TicketTracking') }}" enctype="multipart/form-data">
+                                            <form id="TiketTracking" name="TiketTracking" method="post" action="{{ route('TicketTracking') }}" enctype="multipart/form-data">
                                                 @csrf
-
                                                 <div class="mb-3">
                                                     <label for="complain_id" class="form-label">{{ __('Enter The Ticket Id') }}</label>
                                                     <input type="text" class="form-control" name="complain_id" id="complain_id" aria-describedby="complain_id" placeholder="{{ __('Ticket Number') }}" value="{{ old('complain_id') }}" required>
@@ -71,10 +70,9 @@
                                                             {{ session('error') }}
                                                         </div>
                                                     @endif
-
                                                 </div>
                                                 <div class="card-body">
-                                                    <button class="btn btn-primary btn-block" id="CurrentTicket"><i class="icon icon-knowledge"></i>{{ __('Track Current Ticket') }} </button>
+                                                    <button class="btn btn-primary btn-block" id="SubmitTicketForm"><i class="icon icon-knowledge"></i>{{ __('Track Current Ticket') }}</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -152,6 +150,10 @@
                 e.preventDefault(); // Prevent the default form submission behavior
                 $('#modelHeading').html('{{ __('Submit New Support Ticket') }}');
                 $('#ajaxModel').modal('show');
+            });
+            $('#CurrentTicket').click(function(e) {
+                e.preventDefault(); // Prevent the default form submission behavior
+                $('#TiketTracking').submit(); // Submit the form with POST method
             });
 
         });
