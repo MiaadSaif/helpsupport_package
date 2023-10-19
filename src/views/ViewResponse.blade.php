@@ -1,14 +1,28 @@
-@extends('maf.coordinators.layouts.dashboard')
+
 @inject('carbon', 'Carbon\Carbon')
 
-@section('header')
+<head>
+
     <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
     {{-- <link href="https://cdn.datatales.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet"> --}}
-@endsection
+    <link id="style" href="{{ asset('plugins/css/bootstrap.min.css') }}" rel="stylesheet" />
 
-@section('content')
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="{{ asset('vendor/helpsupport/css/style.css') }}">
+    <link href="{{ asset('vendor/helpsupport/css/dark-style.css') }}" rel="stylesheet" />
+    <link href="{{ asset('vendor/helpsupport/css/transparent-style.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/helpsupport/css/skin-modes.css') }}" rel="stylesheet" />
+
+    <!-- FONT-ICONS CSS -->
+    <link href="{{ asset('vendor/helpsupport/css/icons.css') }}" rel="stylesheet" />
+
+    <!-- COLOR SKIN CSS -->
+    <link id="theme" rel="stylesheet" type="text/css" media="all" href="{{ asset('vendor/helpsupport/colors/color1.css') }}" />
+</head>
+
+<body>
     <div class="side-app">
 
         <!-- CONTAINER -->
@@ -58,7 +72,7 @@
                             @else
                                 <dd class="col-sm-6" style="text-align: end"><span style="color: red;">{{ $complain->complain->status }}</span></dd>
                                 <dt class="col-sm-6">{{ __('Closed by') }}</dt>
-                                <dd class="col-sm-6" style="text-align: end"><span style="color: red;">{{ $complain->complain->closed_by_data->name }}</span></dd>
+                                {{-- <dd class="col-sm-6" style="text-align: end"><span style="color: red;">{{ $complain->complain->closed_by_data->name }}</span></dd> --}}
                                 <dt class="col-sm-6">{{ __('Closed at') }}</dt>
                                 <dd class="col-sm-6" style="text-align: end"><span style="color: red;">{{ $complain->complain->closed_at }}</span></dd>
                             @endif
@@ -253,13 +267,32 @@
     </div>
     </div>
     <!-- ROW-1 END -->
-@endsection
+</body>
 
 @section('scripts')
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="{{ asset('vendor/helpsupport/js/jquery.min.js') }}"></script>
 
+    <!-- BOOTSTRAP JS -->
+    <script src="{{ asset('vendor/helpsupport/plugins/bootstrap/js/popper.min.js') }}"></script>
+    <script src="{{ asset('vendor/helpsupport/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+
+    <!-- SHOW PASSWORD JS -->
+    <script src="{{ asset('vendor/helpsupport/js/show-password.min.js') }}"></script>
+
+    <!-- GENERATE OTP JS -->
+    <script src="{{ asset('vendor/helpsupport/js/generate-otp.js') }}"></script>
+
+    <!-- Perfect SCROLLBAR JS-->
+    <script src="{{ asset('vendor/helpsupport/plugins/p-scroll/perfect-scrollbar.js') }}"></script>
+
+    <!-- Color Theme js -->
+    <script src="{{ asset('vendor/helpsupport/js/themeColors.js') }}"></script>
+
+    <!-- CUSTOM JS -->
+    <script src="{{ asset('vendor/helpsupport/js/custom.js') }}"></script>
     {{-- //blade (script) --}}
     <script type="text/javascript">
         $(function() {

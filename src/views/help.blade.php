@@ -2,25 +2,19 @@
 <html lang="en" dir="ltr">
 
 <head>
-
     <!-- FAVICON -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     <!-- TITLE -->
     <title>{{ __('Help Support') }}</title>
-
     <!-- BOOTSTRAP CSS -->
-
     <link id="style" href="{{ asset('plugins/css/bootstrap.min.css') }}" rel="stylesheet" />
-
     <!-- STYLE CSS -->
     <link rel="stylesheet" href="{{ asset('vendor/helpsupport/css/style.css') }}">
     <link href="{{ asset('vendor/helpsupport/css/dark-style.css') }}" rel="stylesheet" />
     <link href="{{ asset('vendor/helpsupport/css/transparent-style.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/helpsupport/css/skin-modes.css') }}" rel="stylesheet" />
-
     <!-- FONT-ICONS CSS -->
     <link href="{{ asset('vendor/helpsupport/css/icons.css') }}" rel="stylesheet" />
-
     <!-- COLOR SKIN CSS -->
     <link id="theme" rel="stylesheet" type="text/css" media="all" href="{{ asset('vendor/helpsupport/colors/color1.css') }}" />
 </head>
@@ -28,7 +22,6 @@
 <body class="app sidebar-mini ltr login-img">
     <!-- BACKGROUND-IMAGE -->
     <div>
-        <!-- PAGE -->
         <!-- PAGE -->
         <div class="page">
             <div class="">
@@ -65,9 +58,11 @@
                                                 <a class="btn btn-primary btn-block" href="{{ route('MytTickets') }}" id="ShowTicket"><i class="fa fa-trello"></i>&nbsp;{{ __('Show My Tickets') }} </a>
                                             </div>
                                         </div>
+
                                         <div class="tab-pane" id="tab6">
                                             <form id="TiketTracking" name="TiketTracking" class="form-horizontal" action="{{ route('TicketTracking') }}" enctype="multipart/form-data">
                                                 @csrf
+
                                                 <div class="mb-3">
                                                     <label for="complain_id" class="form-label">{{ __('Enter The Ticket Id') }}</label>
                                                     <input type="text" class="form-control" name="complain_id" id="complain_id" aria-describedby="complain_id" placeholder="{{ __('Ticket Number') }}" value="{{ old('complain_id') }}" required>
@@ -83,18 +78,42 @@
                                                 </div>
                                             </form>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
-
                         </form>
+                    </div>
+                </div>
+
+                <!-- Modal for Ticket Type Selection -->
+                <div class="modal fade" id="ajaxModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="modelHeading"></h4>
+                            </div>
+                            <div class="card">
+                                <div class="modal-body">
+                                    <div class="card-body">
+                                        <div class="col-sm-offset-2 col-sm-12">
+                                            <a class="btn btn-primary btn-block" id="1" href="{{ route('createNewTicket', ['type' => 1]) }}">General Enquiries</a>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="col-sm-offset-2 col-sm-12">
+                                            <a class="btn btn-primary btn-block" id="2" href="{{ route('createNewTicket', ['type' => 2]) }}">Technical Support</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- CONTAINER CLOSED -->
             </div>
         </div>
         <!-- End PAGE -->
-
     </div>
     <!-- BACKGROUND-IMAGE CLOSED -->
 
@@ -119,6 +138,25 @@
 
     <!-- CUSTOM JS -->
     <script src="{{ asset('vendor/helpsupport/js/custom.js') }}"></script>
+
+    <!-- Custom script for triggering the modal -->
+    <script type="text/javascript">
+        $(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('#createSupportNewTicket').click(function(e) {
+                e.preventDefault(); // Prevent the default form submission behavior
+                $('#modelHeading').html('{{ __('Submit New Support Ticket') }}');
+                $('#ajaxModel').modal('show');
+            });
+
+        });
+    </script>
+
 </body>
 
 </html>

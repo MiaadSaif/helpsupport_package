@@ -3,7 +3,7 @@
 namespace Miaad\Helpsupport\Http\Controllers;
 
 use App\Http\Controllers\Controller as ControllersController;
-
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -14,9 +14,8 @@ class HelpsupportController extends ControllersController
 {
     public function __construct()
     {
-      $this->middleware('auth:coordinator');
-        //$this->middleware('auth');
-
+         $this->middleware('auth:coordinator');
+       // $this->middleware('auth');
     }
 
     public function index()
@@ -72,8 +71,9 @@ class HelpsupportController extends ControllersController
             $complain_id = json_decode($response)->complains->id;
 
             $ch = curl_init();
-            $url = config("http://192.168.100.192:1234");
-            curl_setopt($ch, CURLOPT_URL, "http://192.168.100.192:1234/api/list_complains/1");
+            $url = config("helpsupport.base_url");
+            $client_id = config("helpsupport.client_id");
+            curl_setopt($ch, CURLOPT_URL, " $url/api/list_complains/$client_id");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
             $response = curl_exec($ch);
@@ -218,7 +218,7 @@ class HelpsupportController extends ControllersController
     {
         $client_id = config("helpsupport.client_id");
 
-       // dd( $client_id);
+        // dd( $client_id);
         $ch = curl_init();
         $url = config("helpsupport.base_url");
 
@@ -226,7 +226,7 @@ class HelpsupportController extends ControllersController
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         $response = curl_exec($ch);
-       // Log::info($response);
+        // Log::info($response);
         if (curl_errno($ch)) {
             echo 'Error: ' . curl_error($ch);
         }
@@ -238,8 +238,9 @@ class HelpsupportController extends ControllersController
     }
     public function TicketTracking(Request $request)
     {
-
+        log::info($request);
         $complain_id = $request->input('complain_id');
+
         $client_id = config("helpsupport.client_id");
         $ch = curl_init();
         $url = config("helpsupport.base_url");
@@ -248,7 +249,12 @@ class HelpsupportController extends ControllersController
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         $response = curl_exec($ch);
-
+        try {
+            // cURL request code
+            $response = curl_exec($ch);
+        } catch (Exception $e) {
+            return redirect()->back()->with("error", $e->getMessage());
+        }
 
         if (curl_errno($ch)) {
             echo 'Error: ' . curl_error($ch);
@@ -257,11 +263,11 @@ class HelpsupportController extends ControllersController
         // dd(json_decode($response));
         $complain = json_decode($response);
 
-        //dd($complain);
+        dd($complain);
         if (!$complain || !$complain->complain) {
             return redirect()->back()->with("error", "Ticket Number Not Found");
         }
-        return view('maf.help_support.ViewResponse', compact("complain"));
+        return view('helpsupport::ViewResponse', compact("complain"));
 
         curl_close($ch);
     }
