@@ -34,7 +34,7 @@
 
                 <div class="container-login100">
                     <div class="wrap-login100 p-6">
-                        <form class="login100-form validate-form">
+                        {{-- <form class="login100-form validate-form"> --}}
                             <span class="login100-form-title pb-5">
                                 Tickets Details
                             </span>
@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="panel-body tabs-menu-body p-0 pt-5">
                                     <div class="tab-content">
-                                        <div class="tab-pane active" id="tab5">
+                                        <div class="tab-pane active " id="tab5">
                                             <div class="card-body">
                                                 <a class="btn btn-primary btn-block" href="{{ route('createNewTicket') }}" id="createSupportNewTicket"><i class="fa fa-file"></i>&nbsp;{{ __('Submit New Support Ticket') }} </a>
                                             </div>
@@ -60,10 +60,11 @@
                                         </div>
 
                                         <div class="tab-pane" id="tab6">
-                                            <form id="TiketTracking" name="TiketTracking" method="post" action="{{ route('TicketTracking') }}" enctype="multipart/form-data">
+                                            <form id="TiketTracking" name="TiketTracking" class="form-horizontal" method="POST" action="{{ route('TicketTracking') }}" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="mb-3">
                                                     <label for="complain_id" class="form-label">{{ __('Enter The Ticket Id') }}</label>
+
                                                     <input type="text" class="form-control" name="complain_id" id="complain_id" aria-describedby="complain_id" placeholder="{{ __('Ticket Number') }}" value="{{ old('complain_id') }}" required>
                                                     @if (session('error'))
                                                         <div class="alert alert-danger">
@@ -72,15 +73,14 @@
                                                     @endif
                                                 </div>
                                                 <div class="card-body">
-                                                    <button class="btn btn-primary btn-block" id="SubmitTicketForm"><i class="icon icon-knowledge"></i>{{ __('Track Current Ticket') }}</button>
+                                                    <button class="btn btn-primary btn-block" id="CurrentTicket"><i class="icon icon-knowledge"></i>{{ __('Track Current Ticket') }} </button>
                                                 </div>
                                             </form>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                       {{--  </form> --}}
                     </div>
                 </div>
 
@@ -111,6 +111,7 @@
                 <!-- CONTAINER CLOSED -->
             </div>
         </div>
+
         <!-- End PAGE -->
     </div>
     <!-- BACKGROUND-IMAGE CLOSED -->
@@ -150,10 +151,6 @@
                 e.preventDefault(); // Prevent the default form submission behavior
                 $('#modelHeading').html('{{ __('Submit New Support Ticket') }}');
                 $('#ajaxModel').modal('show');
-            });
-            $('#CurrentTicket').click(function(e) {
-                e.preventDefault(); // Prevent the default form submission behavior
-                $('#TiketTracking').submit(); // Submit the form with POST method
             });
 
         });

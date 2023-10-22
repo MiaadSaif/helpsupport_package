@@ -246,7 +246,7 @@ class HelpsupportController extends ControllersController
     public function TicketTracking(Request $request)
     {
 
-        log::info($request);
+
         $complain_id = $request->input('complain_id');
 
         $client_id = config("helpsupport.client_id");
@@ -271,7 +271,7 @@ class HelpsupportController extends ControllersController
         // dd(json_decode($response));
         $complain = json_decode($response);
 
-        dd($complain);
+       // dd($complain);
         if (!$complain || !$complain->complain) {
             return redirect()->back()->with("error", "Ticket Number Not Found");
         }
@@ -279,4 +279,7 @@ class HelpsupportController extends ControllersController
 
         curl_close($ch);
     }
+
+
+
 }
