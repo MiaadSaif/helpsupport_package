@@ -60,7 +60,7 @@
                                         </div>
 
                                         <div class="tab-pane" id="tab6">
-                                            <form id="TiketTracking" name="TiketTracking" class="form-horizontal" method="POST" action="{{ route('TicketTracking') }}" enctype="multipart/form-data">
+                                            <form id="TiketTracking" name="TiketTracking" class="form-horizontal" method="POST" action="{{ route('checkTicketTracking') }}" enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="mb-3">
                                                     <label for="complain_id" class="form-label">{{ __('Enter The Ticket Id') }}</label>
